@@ -4,11 +4,10 @@ import { TableComponent } from "../../components/table/table.component";
 
 @Component({
   imports: [SearchInputComponent, TableComponent],
-  templateUrl: './by-capital-page.component.html',
+  templateUrl: './by-country-page.component.html',
 })
-export class ByCapitalPageComponent {
-  onSearchCapital(capital: string): void {
-    console.log('Searching for capital:', capital);
-    // Implement the search logic here
-  }
+export class ByCountryPageComponent {
+onSearchCountry(country: string): void {
+throw new Error('Method not implemented.');
+}
 }
