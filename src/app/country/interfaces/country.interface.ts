@@ -1,4 +1,5 @@
 export interface Country {
+  id: string
   icono: string;
   bandera: string;
   nombre: string;

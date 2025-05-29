@@ -11,7 +11,23 @@
       </tr>
     </thead>
     <tbody>
-
+      @for (country of countries(); track country.id; let i = $index) {
+        <tr>
+          <td>{{i+1}}</td>
+          <td>
+            <img [src]="country.icono" alt="Icono de {{country.nombre}}" class="w-6 h-6">
+          </td>
+          <td>
+            <img [src]="country.bandera" alt="Bandera de {{country.nombre}}" class="w-6 h-6">
+          </td>
+          <td>{{country.nombre}}</td>
+          <td>{{country.capital}}</td>
+          <td class="badge badge-secondary">{{country.poblacion | number}}</td>
+          <td>
+            <a class="link-primary cursor-pointer">Ver Detalles</a>
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 </section>

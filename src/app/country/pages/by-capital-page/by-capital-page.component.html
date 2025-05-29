@@ -1,3 +1,4 @@
-<country-search-input (search)="onSearchCapital($event)" placeholder="Buscar por capital"/>
+<country-search-input (search)="query.set($event)" placeholder="Buscar por capital"/>
 
-<country-table/>
+<country-table [countries]="countries()"/>
+<h1 class="text-red-500">{{isError()}}</h1>
