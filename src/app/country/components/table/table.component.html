@@ -24,7 +24,30 @@
           <td>{{country.capital}}</td>
           <td class="badge badge-secondary">{{country.poblacion | number}}</td>
           <td>
-            <a class="link-primary cursor-pointer">Ver Detalles</a>
+            <a [routerLink]="['/country/by', country.id]" class="link-primary cursor-pointer">Ver Detalles</a>
+          </td>
+        </tr>
+      }
+      @if (errorMessage()) {
+        <tr>
+          <td colspan="7" class="text-center text-red-500">
+            {{errorMessage()}}
+          </td>
+        </tr>
+      }
+
+      @if(countries().length === 0 && !errorMessage() && !isLoading()) {
+        <tr>
+          <td colspan="7" class="text-center">
+            No se encontraron paises.
+          </td>
+        </tr>
+      }
+
+      @if (isLoading()) {
+        <tr>
+          <td colspan="7" class="text-center">
+            Cargando...
           </td>
         </tr>
       }
