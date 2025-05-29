@@ -3,7 +3,7 @@ import { SearchInputComponent } from "../../components/search-input/search-input
 import { TableComponent } from "../../components/table/table.component";
 import { CountryService } from '../../services/country.service';
 import { Country } from '../../interfaces/country.interface';
-import { catchError } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   imports: [SearchInputComponent, TableComponent],
@@ -12,14 +12,16 @@ import { catchError } from 'rxjs';
 export class ByCapitalPageComponent {
   private countryService = inject(CountryService);
 
-  query: Signal<string> = signal<string>('');
+  query = signal<string>('');
 
   countryResource = resource({
     params: () => ({ capital: this.query() }),
-    loader: ({params}) => async () => {
-      console.log('Loading countries by capital:', params.capital);
-      return []
-    }
+    loader: async ({params}) => {
+      if (!params.capital) {
+        return []; // Return an empty array if no capital is provided
+      }
+      return await firstValueFrom(this.countryService.searchByCapital(params.capital)); // Simulate network delay
+    },
   })
 
   /* isError = signal<string | null>(null);

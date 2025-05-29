@@ -1,4 +1,6 @@
 <country-search-input (search)="query.set($event)" placeholder="Buscar por capital"/>
 
-<country-table [countries]="countries()"/>
-<h1 class="text-red-500">{{isError()}}</h1>
+<h1 class="text-red-500">{{countryResource.error()}}</h1>
+@if (countryResource.hasValue()) {
+  <country-table [countries]="countryResource.value()!"/>
+}
